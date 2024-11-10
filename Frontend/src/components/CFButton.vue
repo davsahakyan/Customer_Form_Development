@@ -8,5 +8,3 @@ const emits = defineEmits(['handle-click']);
     <slot />
   </button>
 </template>
-
-<style scoped></style>

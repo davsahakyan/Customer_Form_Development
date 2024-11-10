@@ -4,6 +4,7 @@
 
 import CFButton from './CFButton.vue';
 import SingleFormView from './SingleFormView.vue';
+import eventBus from '../utils/eventBus.js';
 
 defineProps({
   currentForms: {
@@ -12,17 +13,8 @@ defineProps({
   }
 })
 
-// const formData = ref({
-//   firstName: '',
-//   lastName: '',
-//   dateOfBirth: null,
-//   country: null,
-//   profession: null,
-//   yearsInProfession: null
-// });
-
 function createNewForm() {
-
+  eventBus.emit('handle-form-creation');
 }
 
 </script>

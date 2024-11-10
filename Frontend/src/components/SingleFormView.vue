@@ -55,29 +55,29 @@ function handleEditAction() {
     <table class="border-spacing-y-[10px] border-separate">
       <tbody>
         <tr>
-          <td class="py-[4px] rounded-[3px] bg-[#E0E0E0] text-center">First Name</td>
-          <td class="font-medium pl-2">{{ first_name }}</td>
+          <td class="font-medium py-[4px] rounded-[3px] bg-[#E0E0E0] text-center">First Name</td>
+          <td class="pl-2">{{ first_name }}</td>
         </tr>
         <tr>
-          <td class="py-[4px] rounded-[3px] bg-[#E0E0E0] text-center">Last Name</td>
-          <td class="font-medium pl-2">{{ last_name }}</td>
+          <td class="font-medium py-[4px] rounded-[3px] bg-[#E0E0E0] text-center">Last Name</td>
+          <td class="pl-2">{{ last_name }}</td>
         </tr>
         <tr>
-          <td class="py-[4px] rounded-[3px] bg-[#E0E0E0] text-center">Date of Birth</td>
-          <td class="font-medium pl-2">{{ formatDate(date_of_birth) }}</td>
+          <td class="font-medium py-[4px] rounded-[3px] bg-[#E0E0E0] text-center">Date of Birth</td>
+          <td class="pl-2">{{ formatDate(date_of_birth) }}</td>
         </tr>
         <tr>
-          <td class="py-[4px] rounded-[3px] bg-[#E0E0E0] text-center">Country</td>
-          <td class="font-medium pl-2">{{ country }}</td>
+          <td class="font-medium py-[4px] rounded-[3px] bg-[#E0E0E0] text-center">Country</td>
+          <td class="pl-2">{{ country }}</td>
         </tr>
         <tr>
-          <td class="py-[4px] rounded-[3px] bg-[#E0E0E0] text-center">Profession</td>
-          <td class="font-medium pl-2" :class="{ 'italic': !profession }">{{ profession ? profession
+          <td class="font-medium py-[4px] rounded-[3px] bg-[#E0E0E0] text-center">Profession</td>
+          <td class="pl-2" :class="{ 'italic': !profession }">{{ profession ? profession
             : 'Not set' }}</td>
         </tr>
         <tr>
-          <td class="py-[4px] px-2 rounded-[3px] bg-[#E0E0E0] text-center">Years in Profession</td>
-          <td class="font-medium pl-2" :class="{ 'italic': !years_in_profession }">{{ years_in_profession ?
+          <td class="font-medium py-[4px] px-2 rounded-[3px] bg-[#E0E0E0] text-center">Years in Profession</td>
+          <td class="pl-2" :class="{ 'italic': !years_in_profession }">{{ years_in_profession ?
             years_in_profession
             : 'Not set' }}</td>
         </tr>

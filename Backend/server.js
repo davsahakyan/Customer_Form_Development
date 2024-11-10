@@ -1,6 +1,7 @@
 import { configDotenv } from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import pkg from 'pg';
 
 configDotenv();
@@ -22,6 +23,8 @@ await client
 
 const app = express();
 
+app.use(cors());
+
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({
@@ -30,7 +33,7 @@ app.use(bodyParser.urlencoded({
 
 app.get('/get-forms', async (req, res) => {
     try {
-        const query = await client.query('SELECT * FROM customer_forms');
+        const query = await client.query('SELECT * FROM customer_forms ORDER BY customer_id');
 
         res.status(200).json({
             status: 200,
@@ -67,7 +70,7 @@ app.post('/new-form', async (req, res) => {
             first_name, last_name, date_of_birth, country, profession, years_in_profession
         ) VALUES ($1, $2, $3, $4, $5, $6)`;
 
-        let queryValues = [first_name, last_name, date_of_birth, country, profession, years_in_profession];
+        let queryValues = [first_name, last_name, date_of_birth, country, profession || null, years_in_profession || null];
 
         let query = await client.query(queryString, queryValues);
 
@@ -77,6 +80,53 @@ app.post('/new-form', async (req, res) => {
         });
     } catch (err) {
         console.error('[Error] POST /new-form\n', err);
+        res.status(500).json({
+            status: 500,
+            msg: 'Internal server error'
+        });
+    }
+})
+
+app.post('/update-form', async (req, res) => {
+    try {
+        const {
+            customer_id,
+            first_name,
+            last_name,
+            date_of_birth,
+            country,
+            profession,
+            years_in_profession
+        } = req.body;
+
+        if (!first_name || !last_name || !date_of_birth || !country) {
+            res.status(400).json({
+                status: 400,
+                msg: 'Missing required fields'
+            });
+        }
+
+        let queryString = `UPDATE customer_forms
+        SET
+            first_name = $1,
+            last_name = $2,
+            date_of_birth = $3,
+            country = $4,
+            profession = $5,
+            years_in_profession = $6
+        WHERE customer_id = $7;
+        `;
+
+        let queryValues = [first_name, last_name, date_of_birth, country, profession, years_in_profession, customer_id];
+
+        let query = await client.query(queryString, queryValues);
+
+        res.status(200).json({
+            status: 200,
+            msg: 'Form updated successfully'
+        });
+    } catch (err) {
+        console.error('[Error] POST /update-form\n', err);
         res.status(500).json({
             status: 500,
             msg: 'Internal server error'

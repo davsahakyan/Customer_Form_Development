@@ -11,7 +11,8 @@ export default {
         compBackground: '#f1f1f180',
         tableBackground: '#fefefe',
         textHighlight: '#088582',
-        buttonBlue: '#088582'
+        buttonBlue: '#088582',
+        popUpBackground: 'rgba(0, 0, 0, .5)'
       }
     },
   },
