@@ -65,7 +65,7 @@ app.post('/new-form', async (req, res) => {
 
         let queryString = `INSERT INTO customer_forms (
             first_name, last_name, date_of_birth, country, profession, years_in_profession
-        ) VALUES ($1, $2, $3, $4)`;
+        ) VALUES ($1, $2, $3, $4, $5, $6)`;
 
         let queryValues = [first_name, last_name, date_of_birth, country, profession, years_in_profession];
 
@@ -85,5 +85,5 @@ app.post('/new-form', async (req, res) => {
 })
 
 app.listen(3000, () => {
-    console.log('[I nfo] Listening on port 3000');
+    console.log('[Info] Listening on port 3000');
 })
