@@ -78,6 +78,8 @@ onMounted(async () => {
 
       existingForms.value = parsedRequest.rows;
 
+      eventBus.emit('close-form-editor');
+
     } catch (err) {
       error.value = err;
     }
